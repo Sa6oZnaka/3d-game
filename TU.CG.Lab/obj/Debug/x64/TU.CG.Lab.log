@@ -1,0 +1,16 @@
+﻿  Application_GettingStarted.cpp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  TU.CG.Lab.vcxproj -> C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\bin\Debug\x64\TU.CG.Lab.exe
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Shaders\getting_started.frag
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Shaders\getting_started.vert
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\14104498-stone_l.webp
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\awesomeface.png
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\container.jpg
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\diamond.png
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\gold.png
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\redstone.jpg
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\stone.jpg
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\stone2.jpg
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\stone3.jpg
+  C:\Users\Alex\Desktop\TU.CG.Lab\TU.CG.Lab\Content\Textures\stone4.jpg
+  12 File(s) copied
