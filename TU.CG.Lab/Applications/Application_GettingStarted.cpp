@@ -71,7 +71,7 @@ namespace Applications
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		int width, height, channels;
-		std::string texturePath = "Content/Textures/stone4.jpg";
+		std::string texturePath = "Content/Textures/stone.jpg";
 		auto data = stbi_load(texturePath.c_str(), &width, &height, &channels, 0);
 
 		if (data)
