@@ -42,6 +42,11 @@ namespace Utils
 		if (inputManager.IsKeyDown(Input::Keys::D))
 			position += leftRightMovement;
 
+		if (inputManager.IsKeyDown(Input::Keys::LEFT_SHIFT))
+			movementSpeed = 10.0f;
+		else
+			movementSpeed = 2.5f;
+
 		const auto currentCursorPos = inputManager.GetCursorPosition();
 
 		auto xOffset = currentCursorPos.x - previousCursorPosition.x;
