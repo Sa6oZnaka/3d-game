@@ -89,6 +89,9 @@
     <ClInclude Include="Utils\Camera3D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Content\Headers\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\getting_started.vert" />

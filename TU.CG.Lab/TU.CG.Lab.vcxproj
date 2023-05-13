@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClInclude Include="Applications\IApplication.hpp" />
     <ClInclude Include="Applications\Application_GettingStarted.hpp" />
+    <ClInclude Include="Content\Headers\Texture.h" />
     <ClInclude Include="Utils\Camera3D.hpp" />
     <ClInclude Include="Graphics\ElementBuffer.hpp" />
     <ClInclude Include="Input\InputManager.hpp" />

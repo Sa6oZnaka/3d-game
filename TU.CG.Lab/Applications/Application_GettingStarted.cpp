@@ -62,6 +62,10 @@ namespace Applications
 		// ------ Textures
 		//
 
+
+		boxTexture = 21;
+		redstoneTexture = 42;
+
 		glGenTextures(1, &boxTexture);
 		glBindTexture(GL_TEXTURE_2D, boxTexture);
 
@@ -137,6 +141,39 @@ namespace Applications
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		texturePath = "Content/Textures/redstone.jpg";
+		data = stbi_load(texturePath.c_str(), &width, &height, &channels, 0);
+
+		if (data)
+		{
+			glTexImage2D(
+				GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
+				GL_RGB, GL_UNSIGNED_BYTE, data);
+
+			glGenerateMipmap(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+		else
+		{
+			std::string errorMessage = "Failed to load texture: ";
+			errorMessage.append(texturePath);
+			throw std::exception(errorMessage.c_str());
+		}
+
+		stbi_image_free(data);
+
+
+		// Gold
+		unsigned int goldId = 4;
+
+		glGenTextures(1, &goldId);
+		glBindTexture(GL_TEXTURE_2D, goldId);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		texturePath = "Content/Textures/gold.jpg";
 		data = stbi_load(texturePath.c_str(), &width, &height, &channels, 0);
 
 		if (data)
@@ -307,15 +344,17 @@ namespace Applications
 		va->Bind();
 
 
+		int sizeX = 16;
+		int sizeY = 16;
+		int sizeZ = 16;
 
-		
 
 		// map generation
 		// x y z
-		int map[16][3][16];
-		for (int x = 0; x < 16; x++) {
-			for (int y = 0; y < 3; y++) {
-				for (int z = 0; z < 3; z++) {
+		int map[16][16][16];
+		for (int x = 0; x < sizeX; x++) {
+			for (int y = 0; y < sizeY; y++) {
+				for (int z = 0; z < sizeZ; z++) {
 					map[x][y][z] = 1;
 				}
 			}
@@ -323,12 +362,22 @@ namespace Applications
 
 
 		map[0][1][2] = 3;
+		map[0][1][1] = 0;
+		map[0][2][1] = 4;
 
 		// y x z
 		// draw
-		for (int x = 0; x < 16; x++) {
-			for (int y = 0; y < 3; y++) {
-				for (int z = 0; z < 16; z++) {
+		for (int x = 0; x < sizeX; x++) {
+			for (int y = 0; y < sizeY; y++) {
+				for (int z = 0; z < sizeZ; z++) {
+
+					// da ne pokazva vutreshnite blokove
+					if (x > 0 && x < sizeX - 1 && map[x - 1][y][z] != 0 && map[x + 1][y][z] != 0 &&
+						y > 0 && y < sizeY - 1 && map[x][y - 1][z] != 0 && map[x][y + 1][z] != 0 &&
+						z > 0 && z < sizeZ - 1 && map[x][y][z - 1] != 0 && map[x][y][z + 1] != 0) {
+						continue;
+					}
+
 
 					auto position = glm::vec3((float)x, (float)z, (float)y);
 					if (map[x][y][z] == 1) {
@@ -350,7 +399,24 @@ namespace Applications
 
 					if (map[x][y][z] == 3) {
 						glActiveTexture(GL_TEXTURE0);
-						glBindTexture(GL_TEXTURE_2D, redstoneTexture);
+						glBindTexture(GL_TEXTURE_2D, 3);
+
+						auto model = glm::mat4(1.0f);
+
+						model = glm::translate(model, position);
+
+						model = glm::rotate(
+							model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+						shader->SetMat4f("model", model);
+
+						glDrawArrays(GL_TRIANGLES, 0, 36);
+
+					}
+
+					if (map[x][y][z] == 4) {
+						glActiveTexture(GL_TEXTURE0);
+						glBindTexture(GL_TEXTURE_2D, 4);
 
 						auto model = glm::mat4(1.0f);
 
