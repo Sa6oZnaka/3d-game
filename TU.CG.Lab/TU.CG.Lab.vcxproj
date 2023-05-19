@@ -111,15 +111,19 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>XCOPY "$(ProjectDir)Content\" "$(OutDir)Content\" /e /y /i</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>XCOPY "$(SolutionDir)deps\dll\" "$(OutDir)" /e /y /i</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -140,21 +144,32 @@
   <ItemGroup>
     <ClCompile Include="..\deps\src\glad.c" />
     <ClCompile Include="..\deps\src\stb_image.c" />
-    <ClCompile Include="Applications\Application_GettingStarted.cpp" />
+    <ClCompile Include="Applications\Application.cpp" />
+    <ClCompile Include="Graphics\Mesh.cpp" />
+    <ClCompile Include="Graphics\Model.cpp" />
+    <ClCompile Include="Graphics\ModelLoader.cpp" />
+    <ClCompile Include="Utils\ContentManager.cpp" />
+    <ClCompile Include="Graphics\Texture.cpp" />
+    <ClCompile Include="Graphics\TextureCache.cpp" />
     <ClCompile Include="Utils\Camera3D.cpp" />
     <ClCompile Include="Graphics\ElementBuffer.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Graphics\ShaderProgram.cpp" />
     <ClCompile Include="Utils\Window.cpp" />
-    <ClCompile Include="Graphics\VertexBuffer.cpp" />
     <ClCompile Include="Graphics\VertexAttributeContainer.cpp" />
+    <ClCompile Include="Graphics\VertexBuffer.cpp" />
     <ClCompile Include="Graphics\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Applications\Application.hpp" />
     <ClInclude Include="Applications\IApplication.hpp" />
-    <ClInclude Include="Applications\Application_GettingStarted.hpp" />
-    <ClInclude Include="Content\Headers\Texture.h" />
+    <ClInclude Include="Graphics\Mesh.hpp" />
+    <ClInclude Include="Graphics\Model.hpp" />
+    <ClInclude Include="Graphics\ModelLoader.hpp" />
+    <ClInclude Include="Utils\ContentManager.hpp" />
+    <ClInclude Include="Graphics\Texture.hpp" />
+    <ClInclude Include="Graphics\TextureCache.hpp" />
     <ClInclude Include="Utils\Camera3D.hpp" />
     <ClInclude Include="Graphics\ElementBuffer.hpp" />
     <ClInclude Include="Input\InputManager.hpp" />
@@ -162,19 +177,25 @@
     <ClInclude Include="Input\MouseButtons.hpp" />
     <ClInclude Include="Graphics\ShaderProgram.hpp" />
     <ClInclude Include="Utils\Window.hpp" />
-    <ClInclude Include="Graphics\VertexBuffer.hpp" />
     <ClInclude Include="Graphics\VertexAttributeContainer.hpp" />
+    <ClInclude Include="Graphics\VertexBuffer.hpp" />
     <ClInclude Include="Graphics\VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Shaders\getting_started.frag" />
     <None Include="Content\Shaders\getting_started.vert" />
+    <None Include="Content\Shaders\lighting.frag" />
+    <None Include="Content\Shaders\lighting.vert" />
+    <None Include="Content\Shaders\light_box.frag" />
+    <None Include="Content\Shaders\light_box.vert" />
+    <None Include="Content\Shaders\model_loading.frag" />
+    <None Include="Content\Shaders\model_loading.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Content\Textures\container.jpg" />
     <Image Include="Content\Textures\awesomeface.png" />
-    <Image Include="Content\Textures\redstone.jpg" />
-    <Image Include="Content\Textures\stone4.jpg" />
+    <Image Include="Content\Textures\container.jpg" />
+    <Image Include="Content\Textures\container2.png" />
+    <Image Include="Content\Textures\container2_specular.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

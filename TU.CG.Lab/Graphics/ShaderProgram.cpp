@@ -84,19 +84,22 @@ namespace Graphics
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::SetBool(const std::string& name, const bool value) const
+	void ShaderProgram::SetBool(
+		const std::string& name, const bool value) const
 	{
 		const auto uniformLocation = GetUniformLocation(name);
 		glUniform1i(uniformLocation, value);
 	}
 
-	void ShaderProgram::SetInt(const std::string& name, const int value) const
+	void ShaderProgram::SetInt(
+		const std::string& name, const int value) const
 	{
 		const auto uniformLocation = GetUniformLocation(name);
 		glUniform1i(uniformLocation, value);
 	}
 
-	void ShaderProgram::SetFloat(const std::string& name, const float value) const
+	void ShaderProgram::SetFloat(
+		const std::string& name, const float value) const
 	{
 		const auto uniformLocation = GetUniformLocation(name);
 		glUniform1f(uniformLocation, value);
@@ -123,9 +126,7 @@ namespace Graphics
 	void ShaderProgram::SetMat3f(const std::string& name, const glm::mat3& value) const
 	{
 		const auto uniformLocation = GetUniformLocation(name);
-		glUniformMatrix3fv(
-			uniformLocation, 1, GL_FALSE,
-			glm::value_ptr(value));
+		glUniformMatrix3fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(value));
 	}
 
 	void ShaderProgram::SetMat4f(const std::string& name, const glm::mat4& value) const
@@ -141,7 +142,8 @@ namespace Graphics
 		glDeleteShader(fragmentShaderId);
 	}
 
-	std::string ShaderProgram::ReadShaderFile(const std::string& shaderPath)
+	std::string ShaderProgram::ReadShaderFile(
+		const std::string& shaderPath)
 	{
 		std::ifstream shaderFile;
 		std::stringstream shaderStream;
@@ -157,7 +159,8 @@ namespace Graphics
 	}
 
 	bool ShaderProgram::CompileShader(
-		const unsigned shaderId, const std::string& code, std::string& errorMessage)
+		const unsigned shaderId, const std::string& code,
+		std::string& errorMessage)
 	{
 		const auto codeCstr = code.c_str();
 		glShaderSource(shaderId, 1, &codeCstr, nullptr);
@@ -207,7 +210,8 @@ namespace Graphics
 		return true;
 	}
 
-	int ShaderProgram::GetUniformLocation(const std::string& name) const
+	int ShaderProgram::GetUniformLocation(
+		const std::string& name) const
 	{
 		const auto uniformLocation = glGetUniformLocation(id, name.c_str());
 

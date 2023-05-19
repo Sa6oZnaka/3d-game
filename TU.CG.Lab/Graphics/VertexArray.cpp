@@ -28,7 +28,7 @@ namespace Graphics
 			other.id = 0;
 		}
 
-		return *this;
+		return* this;
 	}
 
 	VertexArray::~VertexArray()
@@ -62,7 +62,7 @@ namespace Graphics
 	void VertexArray::SetElementBuffer(std::unique_ptr<ElementBuffer> eb)
 	{
 		if (eb == nullptr)
-			throw std::exception("Element BUffer cannot be null.");
+			throw std::exception("Element Buffer cannot be null.");
 
 		Bind();
 

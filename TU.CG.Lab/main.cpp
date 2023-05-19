@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "Applications/Application_GettingStarted.hpp"
+#include "Applications/Application.hpp"
 
-int main(int argc, char** argv)
+int main(const int argc, const char** argv)
 {
 	try
 	{
-		Applications::Application_GettingStarted app;
+		Applications::Application app;
 
 		app.Run();
 

@@ -19,6 +19,8 @@ namespace Utils
 			float pitch;
 
 			float movementSpeed;
+			float const movementSpeedWalk = 5.5f;
+			float const movementSpeedRun = 10.0f;
 			float mouseSensitivity;
 
 			glm::vec2 previousCursorPosition;
@@ -27,6 +29,8 @@ namespace Utils
 			const float maxZoom;
 
 			bool isUserControlEnabled;
+			int map[32][32][32];
+			bool falling = false;
 		public:
 			Camera3D(glm::vec3 position, glm::vec3 worldUp, float maxZoom);
 
@@ -35,10 +39,13 @@ namespace Utils
 			void SetIsUserControlEnabled(const bool value) { isUserControlEnabled = value; }
 			void SetPosition(const glm::vec3& newPosition) { position = newPosition; }
 			void SetFront(const glm::vec3& newFront) { front = newFront; }
-			void SetWorldUp(const glm::vec3 newWorldUp) { worldUp = newWorldUp; }
+			void SetWorldUp(const glm::vec3& newWorldUp) { worldUp = newWorldUp; }
 			void SetZoom(const float newZoom) { zoom = newZoom; }
 			void SetMovementSpeed(const float newMovementSpeed) { movementSpeed = newMovementSpeed; }
 			void SetMouseSensitivity(const float newMouseSensitivity) { mouseSensitivity = newMouseSensitivity; }
+			bool AllowedPos(glm::vec3 pos);
+			void SetMap(int data[32][32][32]);
+			float GetY(glm::vec3 pos);
 
 			[[nodiscard]] glm::mat4 GetViewMatrix() const;
 

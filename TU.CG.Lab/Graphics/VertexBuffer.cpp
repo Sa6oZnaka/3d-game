@@ -59,17 +59,15 @@ namespace Graphics
 
 		for (const auto& attribute : attributes)
 		{
-			const auto count = GetComponentCount(attribute.type);
+			const auto count = GetCompontentCount(attribute.type);
 			const auto glType = GetComponentGLType(attribute.type);
 			const auto stride = attributes.GetStride();
 
 			glVertexAttribPointer(
-				i, count, glType, GL_FALSE,
-				stride, reinterpret_cast<void*>(attribute.offset));
+				i, count, glType, GL_FALSE, stride,
+				reinterpret_cast<void*>(attribute.offset));
 
-			glEnableVertexAttribArray(i);
-
-			++i;
+			glEnableVertexAttribArray(i++);
 		}
 	}
 

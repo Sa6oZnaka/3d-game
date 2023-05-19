@@ -30,8 +30,10 @@ namespace Graphics
 
 			ShaderProgram(const ShaderProgram& other) = delete;
 			ShaderProgram& operator=(const ShaderProgram& other) = delete;
+
 			ShaderProgram(ShaderProgram&& other) noexcept;
 			ShaderProgram& operator=(ShaderProgram&& other) noexcept;
+
 			~ShaderProgram();
 
 			void Use() const;

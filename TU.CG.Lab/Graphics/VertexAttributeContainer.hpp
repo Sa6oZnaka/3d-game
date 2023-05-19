@@ -47,6 +47,6 @@ namespace Graphics
 	};
 
 	extern size_t GetSizeOfType(VertexAttributeType type);
-	extern int GetComponentCount(VertexAttributeType type);
+	extern int GetCompontentCount(VertexAttributeType type);
 	extern int GetComponentGLType(VertexAttributeType type);
 }

@@ -10,7 +10,7 @@ namespace Graphics
 	}
 
 	VertexAttributeContainer::VertexAttributeContainer(
-		std::initializer_list<VertexAttribute> attributes)
+		const std::initializer_list<VertexAttribute> attributes)
 			: attributes(attributes)
 	{
 		unsigned offset = 0;
@@ -33,7 +33,7 @@ namespace Graphics
 			case VertexAttributeType::VEC4F:
 			case VertexAttributeType::MAT3F:
 			case VertexAttributeType::MAT4F:
-				return GetComponentCount(type) * sizeof(float);
+				return GetCompontentCount(type) * sizeof(float);
 		}
 
 		const std::string errorMessage = "Unhandled Vertex attribute type " +
@@ -42,7 +42,7 @@ namespace Graphics
 		throw std::exception(errorMessage.c_str());
 	}
 
-	int GetComponentCount(const VertexAttributeType type)
+	int GetCompontentCount(const VertexAttributeType type)
 	{
 		switch (type)
 		{

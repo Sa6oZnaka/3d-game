@@ -25,7 +25,7 @@ namespace Input
 
 			bool IsKeyDown(Keys key);
 			bool IsButtonDown(MouseButtons button);
-		    // Possible optimizations: IsKeyPressed, IsButtonPressed
+		    // TODO: Possible optimizations: IsKeyPressed, IsButtonPressed
 
 			void ResetState();
 

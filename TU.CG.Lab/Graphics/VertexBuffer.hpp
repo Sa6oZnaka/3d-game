@@ -25,7 +25,7 @@ namespace Graphics
 
 			void SetAttributes(const VertexAttributeContainer& newAttributes)
 			{
-				this->attributes = newAttributes;
+				attributes = newAttributes;
 			}
 	};
 }
